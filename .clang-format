@@ -1,0 +1,159 @@
+---
+BasedOnStyle: LLVM
+
+# 1-21 are handled through clang-tidy
+
+# 4. Files
+# 4.1 Source Files 
+
+#  22. Header files: C header files should have the extension .h and source files the extension .c 
+#  23. Definitions: all definitions should reside in source files. 
+#  24. Struct declarations/definitions: give important structs their own files 
+
+#  25. Line length: file content must be kept within 80 columns. 
+ColumnLimit: 80
+ReflowComments: true
+
+#  26. Special characters: special characters like TAB and page break within source files must be avoided. 
+#  27. Split lines: the incompleteness of split lines must be made obvious [1]. 
+#  28. Include guards: header files must contain an include guard. 
+#   Handled with clang-tidy
+
+# 4.2 Include Files and Include Statements
+#  29. Ordering includes: include statements should be sorted and grouped. Sort them by their hierarchical position in the system with low level files included first. Leave an empty line between groups of include statements. 
+
+IncludeBlocks: Regroup
+IncludeCategories: 
+  - Regex:    '<[[:alnum:].]+>'
+    Priority: 0
+  - Regex:    '<([[:alnum:].]+){1}/[[:alnum:].]+>'
+    Priority: 1
+  - Regex:    '<([[:alnum:].]+){2}/[[:alnum:].]+>'
+    Priority: 2
+  - Regex:    '<([[:alnum:].]+){3}/[[:alnum:].]+>'
+    Priority: 3
+
+  - Regex:    '"[[:alnum:].]+"'
+    Priority: 10
+  - Regex:    '"([[:alnum:].]+){1}/[[:alnum:].]+"'
+    Priority: 11
+  - Regex:    '"([[:alnum:].]+){2}/[[:alnum:].]+"'
+    Priority: 12
+  - Regex:    '"([[:alnum:].]+){3}/[[:alnum:].]+"'
+    Priority: 13
+
+#  30. Positioning includes: include statements must be located at the top of a file only. 
+
+# 5. Statements
+# 5.1 Types
+#  31. Local types: types that are local to one file only can be declared inside that file. 
+#  32. Explicit type conversions: type conversions must always be done explicitly. Never rely on implicit type conversion. 
+
+# 5.2 Variables
+#  33. Initialising variables: variables should be initialized when they are declared. 
+#   Handled with clang-tidy
+#  34. Single meaning for variables: variables must never have dual meaning. 
+#  35. Globals: use of global variables should be minimized. 
+#  36. Implicit zero test: implicit test for 0 or NULL should not be used other than for boolean variables. 
+#  37. Limiting scope: variables should be declared in the smallest scope possible. 
+
+# 5.3 Loops
+#  38. for loops: only loop control statements must be included in the for() construction. 
+#  39. Loop variable initialisation: loop variables should be initialised immediately before the loop. 
+#  40. Break and continue: the use of break and continue in loops should be minimised. 
+#  41. Single return: functions should have a single return statement at the end. 
+#  42. Equality of booleans: do not write code that compares boolean expressions for equality with 1 or 0. 
+#  43. Complex conditions: complex conditional expressions must be avoided. Introduce temporary boolean variables instead [1]. 
+#  44. Side-effects in expressions: executable statements in conditionals and loop conditions should be avoided. 
+
+
+# 5.5 Miscellaneous
+#  45. Literals: the use of magic numbers in the code should be avoided. Numbers other than 0 and 1 should be declared as named constants instead. 
+#   Handled with clang-tidy
+#  46. Floating point literals: floating point literals should always be written with a decimal point and at least one digit before and after the point. 
+#  47. Function return type: functions must always have the return type specified explicitly. 
+#  48. Goto: goto should not be used. 
+#   Handled with clang-tidy
+
+
+# 6 Layout and Comments 
+# 6.1 Layout
+# 49. Indentation amount: basic indentation should be 4. 
+TabWidth: 4
+UseTab: Never
+
+#  50. Block layout: block layout should be as illustrated in example 1 below (recommended) or example 2, and must not be as shown in example 3 [4]. Function and class blocks must use the block layout of example 2. 
+SpaceBeforeCaseColon: true
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterClass: true
+  AfterFunction: true
+  IndentBraces: false
+  
+  #  51. if-else layout: the if-else class of statements should have the following form: 
+  #  52. for layout: a for statement should have the following form: 
+  #  53. Empty statement: an empty for statement should have the following form: 
+  #  54. while layout: A while statement should have the following form: 
+  #  55. do-while layout: a do-while statement should have the following form: 
+  #  56. switch layout: a switch statement should have the following form: 
+  AfterControlStatement: Never
+  BeforeElse: false
+  BeforeWhile: false
+  AfterCaseLabel: false
+
+  AfterEnum: true
+  AfterNamespace: false
+  AfterStruct: true
+  AfterUnion: true
+  AfterExternBlock: true
+  BeforeCatch: true
+#  57. Embedded statements: even single statement if-else, for or while statements should be written with braces. 
+AllowShortBlocksOnASingleLine: Never
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortEnumsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+
+#  58. Depth of nesting: within a function, statements must not be nested more than three deep. 
+#   Handled with clang-tidy
+#  59. Function size: no single function should be more than 40 lines long, including comments 
+#   Handled with clang-tidy
+  
+
+#  60. White space: use it!
+#  61. Blank lines (a): logical units within a block should be separated by one blank line. 
+#  62. Blank lines (b): functions should be separated by three blank lines. 
+MaxEmptyLinesToKeep: 3
+
+#  63. Variable alignment: variables in declarations can be left aligned. 
+#  64. Statement alignment: use alignment wherever it enhances readability. 
+AlignAfterOpenBracket: Align
+AlignArrayOfStructures: Left
+AlignConsecutiveAssignments:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: true
+  AlignCompound: true
+  PadOperators: true
+AlignConsecutiveBitFields:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: true
+AlignConsecutiveDeclarations:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: true
+AlignConsecutiveMacros:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: true
+
+AlignEscapedNewlines: Left
+AlignOperands: Align
+AlignTrailingComments:
+  Kind: Always
+  OverEmptyLines: 1
+
+
+#  65. Function comments: every function must have an explanatory comment. The comment should immediately precede the function signature. 

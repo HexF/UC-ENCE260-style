@@ -1,0 +1,100 @@
+---
+Checks: '-*,llvm-header-guard,readability-identifier-naming,core.uninitialized.*,readability-magic-numbers,cppcoreguidelines-avoid-goto,readability-function-size'
+WarningsAsErrors: true
+
+CheckOptions: 
+    # 3. Naming Conventions
+    # 3.1 General Naming Conventions
+    #  2. General naming: all entities should be given names that communicate the entity's role to the reader. 
+    #  3. Type names: names representing types must be in mixed case starting with upper case. 
+    - key: readability-identifier-naming.TypedefCase
+      value: 'CamelCase'
+    - key: readability-identifier-naming.TypedefSuffix
+      value: '_t'
+
+    - key: readability-identifier-naming.EnumCase
+      value: 'CamelCase'
+    - key: readability-identifier-naming.EnumSuffix
+      value: '_e'
+
+    - key: readability-identifier-naming.StructCase
+      value: 'CamelCase'
+    - key: readability-identifier-naming.StructSuffix
+      value: '_s'
+
+    - key: readability-identifier-naming.UnionCase
+      value: 'CamelCase'
+    - key: readability-identifier-naming.UnionSuffix
+      value: '_u'
+
+    #  4. Variable names: must be in mixed case starting with lower case. 
+    - key: readability-identifier-naming.LocalVariableCase
+      value: 'camelBack'
+    - key: readability-identifier-naming.ConstantParameterCase
+      value: 'camelBack'
+    - key: readability-identifier-naming.ConstantPointerParameterCase
+      value: 'camelBack'
+    - key: readability-identifier-naming.ParameterCase
+      value: 'camelBack'
+    - key: readability-identifier-naming.PointerParameterCase
+      value: 'camelBack'
+    - key: readability-identifier-naming.StaticVariableCase
+      value: 'camelBack'
+    - key: readability-identifier-naming.VariableCase
+      value: 'camelBack'
+
+    #  5. Constant names: named constants must be all uppercase using underscore to separate words. This includes enumeration values and macros. 
+    - key: readability-identifier-naming.EnumConstantCase
+      value: 'UPPER_CASE'
+    - key: readability-identifier-naming.GlobalConstantCase
+      value: 'UPPER_CASE'
+    - key: readability-identifier-naming.MacroDefinitionCase
+      value: 'UPPER_CASE'
+
+    #  6. Function names: names representing functions must be in mixed case starting with lower case. 
+    - key: readability-identifier-naming.GlobalFunctionCase
+      value: 'camelBack'
+    - key: readability-identifier-naming.FunctionCase
+      value: 'camelBack'
+
+    #   7. Abbreviations: abbreviations and acronyms must not be uppercase when used in names [4]. 
+    #   8. Generic variables of user-defined types: should have the same name as their type. 
+    #   9. Scope implications: shorter names can be used with variables having shorter scope. Variables with a large scope should have long names [1]. 
+
+    # 3.2 Specific Naming Conventions
+    #   10. Initialising: the term initialise (or initialize or init) can be used where an object or a concept is established. 
+    #   11. GUI components: variables representing GUI components should be suffixed by the component type name. 
+    #   12. Plurals: plural form should be used on names representing a collection of objects. 
+    #   13. Cardinalities: the prefix n should be used for variables representing cardinalities of sets of objects. 
+    #   14. Entity identifiers: suffix No should be used for variables representing an entity number. 
+    #   15. Iterators: iterator variables should be called i, j, k etc. 
+    #   16. Boolean names: the prefix is can usefully be used for boolean variables and functions. 
+    #   17. Abbreviations: abbreviations in names should be avoided.
+    #   18. Negated booleans: negated boolean variable names must be avoided. 
+    #   19. Enumerations: enumeration constants can be prefixed by a common type name. 
+    #   20. Functions: functions should be named after what they return. 
+    #   21. Procedures: Procedures (void functions) should be named after what they do. 
+
+    # 4.2
+    #   28. Include guards: header files must contain an include guard. 
+    #   Check `llvm-header-guard` enforces this
+    - key: llvm-header-guard.HeaderFileExtensions
+      value: 'h'
+
+    #   33. Initialising variables: variables should be initialized when they are declared. 
+    #   Checks 'core.uninitialized.*' checks this
+
+    #   45. Literals: the use of magic numbers in the code should be avoided. Numbers other than 0 and 1 should be declared as named constants instead. 
+    #   Check `readability-magic-numbers` enforces this
+    - key: readability-magic-numbers.IgnoredIntegerValues
+      value: '0;1'
+
+    #   48. Goto: goto should not be used. 
+    #   Check `cppcoreguidelines-avoid-goto` enforces this
+
+    #   58. Depth of nesting: within a function, statements must not be nested more than three deep. 
+    - key: readability-function-size.NestingThreshold
+      value: 3
+    #   59. Function size: no single function should be more than 40 lines long, including comments 
+    - key: readability-function-size.LineThreshold
+      value: 40
