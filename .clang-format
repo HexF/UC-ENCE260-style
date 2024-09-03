@@ -79,6 +79,7 @@ IncludeCategories:
 # 6 Layout and Comments 
 # 6.1 Layout
 # 49. Indentation amount: basic indentation should be 4. 
+IndentWidth: 4
 TabWidth: 4
 UseTab: Never
 
